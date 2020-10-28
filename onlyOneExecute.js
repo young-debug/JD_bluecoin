@@ -44,6 +44,21 @@ async function start() {
         return;
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
+    function startTime(){
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();// 在小于10的数字前加一个‘0’
+        m=checkTime(m);
+        s=checkTime(s);
+        console.log(h+":"+m+":"+s)
+    }
+    function checkTime(i){
+        if (i<10){
+            i="0" + i;
+        }
+        return i;
+    }
     try {
         await downFile();
         await changeFiele();
