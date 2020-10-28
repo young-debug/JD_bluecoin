@@ -65,13 +65,15 @@ async function start() {
 	while (new Date().getTime() < start + delay);
     }
 	
-    if (startTime() > 300000) {
+    let waiting_time = startTime()
+    
+    if (waiting_time > 300000) {
 	console.log("等待时间过长，零点之前五分钟内再执行吧");
 	return
     }
     else{
-	console.log("脚本等待" + wait_time / 1000 + "s");
-	sleep(startTime());
+	console.log("脚本等待" + waiting_time / 1000 + "s");
+	sleep(waiting_time);
     }
 	    
     try {
