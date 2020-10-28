@@ -34,7 +34,9 @@ async function start() {
     console.log(`当前执行时间:${new Date().toString()}`);
     let CookieJDs = [];
     CookieJDs = Secrets.JD_COOKIE.split('&');
-    Secrets.JD_COOKIE = CookieJDs[Number(Secrets.LOCATION)-1]
+    if (Secrets.LOCATION) {	
+    	Secrets.JD_COOKIE = CookieJDs[Number(Secrets.LOCATION)-1]
+    }
     if (!Secrets.JD_COOKIE) {
         console.log("请填写 JD_COOKIE 后在继续");
         return;
@@ -43,7 +45,12 @@ async function start() {
         console.log("请填写 SYNCURL 后在继续");
         return;
     }
-    console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
+    if (Secrets.LOCATION) {	
+    	console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
+    }
+    else{
+    	console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到`);
+    }
     function startTime(){
         let targetTimezone = -8 ; // 目标时区，东9区
         let _dif = new Date().getTimezoneOffset();   // 当前时区与中时区时差，以min为维度
