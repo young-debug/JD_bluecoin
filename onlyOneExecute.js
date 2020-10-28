@@ -59,6 +59,7 @@ async function start() {
         }
         return i;
     }
+    startTime();
     try {
         await downFile();
         await changeFiele();
