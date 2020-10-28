@@ -45,27 +45,24 @@ async function start() {
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
     function startTime(){
-        let targetTimezone = -8     // 目标时区，东8区
-        // 当前时区与中时区时差，以min为维度
-        let _dif = new Date().getTimezoneOffset()
+        let targetTimezone = -8  // 目标时区，东9区
+        let _dif = new Date().getTimezoneOffset()   // 当前时区与中时区时差，以min为维度
         // 本地时区时间 + 时差  = 中时区时间
         // 目标时区时间 + 时差 = 中时区时间
         // 目标时区时间 = 本地时区时间 + 本地时区时差 - 目标时区时差
-        // 东9区时间
-        let east8time = new Date().getTime() + _dif * 60 * 1000 - (targetTimezone * 60 * 60 * 1000)
+        let east8time = new Date().getTime() + _dif * 60 * 1000 - (targetTimezone * 60 * 60 * 1000) // 东8区时间
         let today=new Date(east8time);
-        let h=today.getHours();
-        let m=today.getMinutes();
-        let s=today.getSeconds();// 在小于10的数字前加一个‘0’
-        m=checkTime(m);
-        s=checkTime(s);
-        console.log(h+":"+m+":"+s)
+        const start_run = new Date(new Date().toLocaleDateString());
+        start_run.setTime(start_run.getTime() + 3600 * 1000 * 24 * 1);
+        const run_time = start_run.getTime();
+        let wait_time = run_time - today
+        console.log("脚本等待" + wait_time / 1000 + "s")
+        sleep(wait_time)
     }
-    function checkTime(i){
-        if (i<10){
-            i="0" + i;
-        }
-        return i;
+    function sleep(delay)
+    {
+        let start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
     }
     startTime();
     try {
