@@ -45,10 +45,18 @@ async function start() {
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
     function startTime(){
-        var today=new Date();
-        var h=today.getHours();
-        var m=today.getMinutes();
-        var s=today.getSeconds();// 在小于10的数字前加一个‘0’
+        let targetTimezone = -8     // 目标时区，东8区
+        // 当前时区与中时区时差，以min为维度
+        let _dif = new Date().getTimezoneOffset()
+        // 本地时区时间 + 时差  = 中时区时间
+        // 目标时区时间 + 时差 = 中时区时间
+        // 目标时区时间 = 本地时区时间 + 本地时区时差 - 目标时区时差
+        // 东9区时间
+        let east8time = new Date().getTime() + _dif * 60 * 1000 - (targetTimezone * 60 * 60 * 1000)
+        let today=new Date(east8time);
+        let h=today.getHours();
+        let m=today.getMinutes();
+        let s=today.getSeconds();// 在小于10的数字前加一个‘0’
         m=checkTime(m);
         s=checkTime(s);
         console.log(h+":"+m+":"+s)
