@@ -58,13 +58,16 @@ async function start() {
         let wait_time = run_time - today
         console.log("脚本等待" + wait_time / 1000 + "s")
         sleep(wait_time)
+        return
     }
     function sleep(delay)
     {
         let start = new Date().getTime();
-        while (new Date().getTime() < start + delay);
+        if (delay < 300000) { //如果小于五分钟
+        	while (new Date().getTime() < start + delay);
+		}
     }
-    startTime();
+    if (startTime() == "too much time");
     try {
         await downFile();
         await changeFiele();
