@@ -71,8 +71,10 @@ async function start() {
         let start = new Date().getTime();
 	while (new Date().getTime() < start + delay);
     }
-	
-    let waiting_time = startTime()
+    let waiting_time = 0;
+    if (Secrets.LOCATION) {	
+    	waiting_time = startTime()
+    }
     
     if (waiting_time > 300000) {
 	console.log("等待时间过长，零点之前五分钟内再执行吧");
