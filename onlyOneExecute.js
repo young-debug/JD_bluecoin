@@ -56,7 +56,7 @@ async function start() {
         start_run.setTime(start_run.getTime() + 3600 * 1000 * 24 * 1);
         const run_time = start_run.getTime();
         let wait_time = run_time - today;
-        return wait_time;
+        return 299999;
     }
 	
     function sleep(delay)
