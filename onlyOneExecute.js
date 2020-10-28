@@ -45,8 +45,8 @@ async function start() {
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到,只执行第${Number(Secrets.LOCATION)}个`);
     function startTime(){
-        let targetTimezone = -8  // 目标时区，东9区
-        let _dif = new Date().getTimezoneOffset()   // 当前时区与中时区时差，以min为维度
+        let targetTimezone = -8 ; // 目标时区，东9区
+        let _dif = new Date().getTimezoneOffset();   // 当前时区与中时区时差，以min为维度
         // 本地时区时间 + 时差  = 中时区时间
         // 目标时区时间 + 时差 = 中时区时间
         // 目标时区时间 = 本地时区时间 + 本地时区时差 - 目标时区时差
@@ -55,19 +55,25 @@ async function start() {
         const start_run = new Date(new Date().toLocaleDateString());
         start_run.setTime(start_run.getTime() + 3600 * 1000 * 24 * 1);
         const run_time = start_run.getTime();
-        let wait_time = run_time - today
-        console.log("脚本等待" + wait_time / 1000 + "s")
-        sleep(wait_time)
-        return
+        let wait_time = run_time - today;
+        return wait_time;
     }
+	
     function sleep(delay)
     {
         let start = new Date().getTime();
-        if (delay < 300000) { //如果小于五分钟
-        	while (new Date().getTime() < start + delay);
-		}
+	while (new Date().getTime() < start + delay);
     }
-    if (startTime() == "too much time");
+	
+    if (startTime() > 300000) {
+	console.log("等待时间过长，零点之前五分钟内再执行吧");
+	return
+    }
+    else{
+	console.log("脚本等待" + wait_time / 1000 + "s");
+	sleep(startTime());
+    }
+	    
     try {
         await downFile();
         await changeFiele();
