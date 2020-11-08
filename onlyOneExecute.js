@@ -16,7 +16,7 @@ const Secrets = {
     FruitShareCodes: process.env.FruitShareCodes, //京东农场分享码
     Unsubscribe: process.env.UNSUBSCRIBE, //取关商铺
     LOCATION: process.env.LOCATION, //第几个yml
-	BLUECOIN_JS_URL: process.env.SYNCURL, //最新js地址
+    BLUECOIN_JS_URL: process.env.SYNCURL, //最新js地址
 };
 
 async function downFile() {
