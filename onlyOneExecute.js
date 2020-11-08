@@ -16,7 +16,6 @@ const Secrets = {
     FruitShareCodes: process.env.FruitShareCodes, //京东农场分享码
     Unsubscribe: process.env.UNSUBSCRIBE, //取关商铺
     LOCATION: process.env.LOCATION, //第几个yml
-    BLUECOIN_JS_URL: process.env.SYNCURL, //最新js地址
 };
 
 async function downFile() {
@@ -80,9 +79,7 @@ async function start() {
 	console.log("检测到离零点只有不到五分钟，脚本将等待" + waiting_time / 1000 + "s，到零点再执行");
 	sleep(waiting_time);
     }
-	if (!Secrets.BLUECOIN_JS_URL) {	
-    	Secrets.BLUECOIN_JS_URL = "https://github.com/lxk0301/scripts/raw/master/jd_blueCoin.js"
-    }    
+	
     try {
         await downFile();
         await changeFiele();
