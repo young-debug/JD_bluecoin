@@ -81,7 +81,7 @@ async function start() {
 	sleep(waiting_time);
     }
 	if (!Secrets.BLUECOIN_JS_URL) {	
-    	Secrets.BLUECOIN_JS_URL = https://github.com/lxk0301/scripts/raw/master/jd_blueCoin.js
+    	Secrets.BLUECOIN_JS_URL = "https://github.com/lxk0301/scripts/raw/master/jd_blueCoin.js"
     }    
     try {
         await downFile();
