@@ -39,4 +39,4 @@ jobs:
                   DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
                   DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
                   UNSUBSCRIBE: ${{ secrets.UNSUBSCRIBE }}
-                  SYNCURL: https://raw.githubusercontent.com/Twinzo1/JD_bluecoin/main/jd_unsubscribe.js
+                  SYNCURL: https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_unsubscribe.js
